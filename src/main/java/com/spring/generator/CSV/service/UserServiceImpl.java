@@ -16,4 +16,9 @@ public class UserServiceImpl implements UserService {
     public List<User> doGetAllUsers() {
         return userRepository.findAll();
     }
+
+    @Override
+    public User doCreateUsers(User payload) {
+        return userRepository.save(payload);
+    }
 }

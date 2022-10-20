@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserService {
     List<User> doGetAllUsers();
+    User doCreateUsers(User payload);
 }
