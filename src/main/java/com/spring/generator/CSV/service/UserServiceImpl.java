@@ -8,6 +8,7 @@ import org.apache.commons.csv.CSVPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User doCreateUsers(User payload) {
         return userRepository.save(payload);
     }
