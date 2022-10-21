@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin
@@ -24,5 +27,13 @@ public class UserController {
     @PostMapping("/users")
     public ResponseEntity<Object> createUsers(@RequestBody User payload) {
         return new ResponseEntity<>(userService.doCreateUsers(payload), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/users/report/generate")
+    public ResponseEntity<Object> generateReportUser(HttpServletResponse httpServletResponse)
+            throws IOException {
+        httpServletResponse.setContentType("text/csv");
+        httpServletResponse.addHeader("Content-Disposition","attachment; filename=\"untitled.csv\"");
+        return new ResponseEntity<>("Success generated report", HttpStatus.OK);
     }
 }
