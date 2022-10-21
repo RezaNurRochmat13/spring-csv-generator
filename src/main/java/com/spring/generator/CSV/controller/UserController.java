@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 
 @RestController
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Object> createUsers(@RequestBody User payload) {
+    public ResponseEntity<Object> createUsers(@Valid @RequestBody User payload) {
         return new ResponseEntity<>(userService.doCreateUsers(payload), HttpStatus.CREATED);
     }
 
